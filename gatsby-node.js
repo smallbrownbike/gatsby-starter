@@ -11,24 +11,27 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       graphql(
         `
           {
-            allContentfulPage {
+            allContentfulPost {
               edges {
                 node {
                   id
                   title
                   slug
-                  content
+                  content {
+                    content
+                  }
                 }
               }
             }
           }
         `
       ).then(result => {
+        console.log(result)
         if (result.errors) {
           reject(result.errors)
         } else {
           // Create posts
-          result.data.allContentfulPage.edges.forEach(edge => {
+          result.data.allContentfulPost.edges.forEach(edge => {
             createPage({
               path: `${edge.node.slug}`,
               component: postTemplate,

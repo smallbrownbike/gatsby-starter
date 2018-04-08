@@ -1,9 +1,9 @@
 import React from 'react'
 const ReactMarkdown = require('react-markdown')
 
-const IndexPage = props => {
-  const md = props.pathContext.desc.content
+function Preview(props) {
+  const md = props.pathContext.content.content
   return <ReactMarkdown escapeHtml={false} source={md} />
 }
 
-export default IndexPage
+export default Preview
